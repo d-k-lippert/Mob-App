@@ -15,9 +15,9 @@ class List extends React.Component {
         const list = this.props.list
 
         //bekommt attribute von create elem aus der handle-create function siehe create-element.jsx
-        const listUI = list.map(elem => <Elem key={elem.id} id={elem.id} artist={elem.artist}/>)
+        const listUI = list.map(elem => <Elem key={elem.id} id={elem.id} artist={elem.artist} date={elem.date} genre={elem.genre}/>)
 
-        return <div className="flex center v-center flex-direct">
+        return <div className="flex space-even">
             {listUI}
         </div>
     }

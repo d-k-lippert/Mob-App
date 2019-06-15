@@ -28,7 +28,9 @@ const initialState = {
     list: [
         {
             id: uuid(),
-            artist: 'artist'
+            artist: '',
+            date:'',
+            genre:''
         }
     ]
 }
@@ -38,7 +40,7 @@ const initialState = {
 function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_ELEM: {
-            const newList = [...state.list, {id: action.payload.id, artist: action.payload.artist}]
+            const newList = [...state.list, {id: action.payload.id, artist: action.payload.artist, date: action.payload.date, genre: action.payload.genre}]
             return {...state, list: newList}
         }
         case DELETE_ELEM: {
