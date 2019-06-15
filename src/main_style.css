@@ -1,5 +1,6 @@
 .flex{
     display:flex;
+
 }
 
 .center{
@@ -12,4 +13,13 @@
 
 .flex-direct{
     flex-direction: column;
+}
+
+.space-even{
+    justify-content: space-evenly;
+}
+
+.round-inputs{
+    border-radius: 5px;
+    margin: 0 10px;
 }
