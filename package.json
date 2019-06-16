@@ -14,6 +14,7 @@
     "lodash": "^4.17.11",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-flip-move": "^3.0.3",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
