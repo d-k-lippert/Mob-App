@@ -12,3 +12,7 @@ add this lines in file:   /react/webpack.config.js
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader']
 },
+
+install FlipmMove for the list animation - type 
+npm i -S react-flip-move
+for installation
