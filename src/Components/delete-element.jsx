@@ -13,6 +13,7 @@ class Elem extends React.Component {
     }
 
     render() {
+
         return <div className="flex space-even v-center flex-direct">
             <div>
                 <p>Artist: {this.props.artist}</p>
@@ -21,6 +22,7 @@ class Elem extends React.Component {
             </div>
             <Button type="danger" onClick={this.deleteHandler}>delete me</Button>
         </div>
+
     }
 }
 export default Elem;
