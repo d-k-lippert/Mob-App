@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Button} from 'antd'
+import {Button, Icon} from 'antd'
 import 'antd/dist/antd.css'
 import '../main_style.css'
 import uuid from 'uuid/v4'
-import img from "../img/add-square-button.png"
 
 
 const CREATE_ELEM = 'CREATE_ELEM'
@@ -17,6 +16,7 @@ class CreateElem extends React.Component {
         this.artistRef = React.createRef()
         this.dateRef = React.createRef()
         this.genreRef = React.createRef()
+        this.locationRef = React.createRef()
     }
 
 
@@ -28,8 +28,9 @@ class CreateElem extends React.Component {
         const artist = this.artistRef.current.value
         const date = this.dateRef.current.value
         const genre = this.genreRef.current.value
+        const location = this.locationRef.current.value
 
-        this.props.dispatch({type: CREATE_ELEM, payload: {artist, date, genre,  id: uuid()}})
+        this.props.dispatch({type: CREATE_ELEM, payload: {artist, date, genre,location,  id: uuid()}})
 
 
     }
@@ -54,7 +55,12 @@ class CreateElem extends React.Component {
                         <option value="Noise">Noise</option>
                     </select>
                 </label>
-                <Button type="primary" onClick={this.handleCreate} ><img src={img} alt="add icon" className="v-center icon"/></Button>
+
+                <label>Location
+                    <input className="round-inputs" ref={this.locationRef} type="text" required placeholder="insert location"/>
+                </label>
+
+                <Button type="primary" onClick={this.handleCreate} ><Icon type="plus-circle" /></Button>
             </form>
         </div>
     }
