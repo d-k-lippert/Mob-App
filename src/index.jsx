@@ -30,7 +30,8 @@ const initialState = {
             id: uuid(),
             artist: '',
             date:'',
-            genre:''
+            genre:'',
+            location:''
         }
     ]
 }
@@ -40,7 +41,16 @@ const initialState = {
 function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_ELEM: {
-            const newList = [...state.list, {id: action.payload.id, artist: action.payload.artist, date: action.payload.date, genre: action.payload.genre}]
+            const newList =
+                [...state.list,
+                    {
+                        id: action.payload.id,
+                        artist: action.payload.artist,
+                        date: action.payload.date,
+                        genre: action.payload.genre,
+                        location: action.payload.location
+                    }
+                ]
             return {...state, list: newList}
         }
         case DELETE_ELEM: {
@@ -58,61 +68,6 @@ function reducer(state = initialState, action) {
             return state
     }
 }
-/*
-@connect()
-class Elem extends React.Component {
-    deleteHandler = () => {
-        this.props.dispatch({type: DELETE_ELEM, payload: this.props.id})
-    }
-
-    render() {
-        return <div className="flex center v-center">
-            {this.props.name}
-            <Button type="danger" onClick={this.deleteHandler}>delete me</Button>
-        </div>
-    }
-}
-/*
-function connectListToListComponent(state) {
-    return {list: state.list}
-}
-
-@connect(connectListToListComponent)
-class List extends React.Component {
-    render() {
-        const list = this.props.list
-        const listUI = list.map(elem => <Elem key={elem.id} id={elem.id} name={elem.name}/>)
-
-        return <div className="flex center v-center flex-direct">
-            {listUI}
-        </div>
-    }
-}
-
-
-/*
-@connect()
-class CreateElem extends React.Component {
-    constructor() {
-        super()
-
-        this.textRef = React.createRef()
-    }
-
-    handleCreate = () => {
-        const name = this.textRef.current.value
-
-        this.props.dispatch({type: CREATE_ELEM, payload: {name, id: uuid()}})
-    }
-
-    render() {
-        return <div className="flex center v-center">
-            <input ref={this.textRef} type="text" required/>
-            <Button type="primary" onClick={this.handleCreate}>create me</Button>
-        </div>
-    }
-}
-*/
 
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
