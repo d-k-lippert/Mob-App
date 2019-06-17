@@ -12,14 +12,22 @@
 }
 
 .flex-direct{
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .space-even{
     justify-content: space-evenly;
 }
 
+.space-even p, Button{
+    margin: 0 15px;
+}
 .round-inputs{
     border-radius: 5px;
     margin: 0 10px;
+}
+
+.icon{
+    height:50%;
+    margin: 5px;
 }

@@ -4,6 +4,7 @@ import {Button} from 'antd'
 import 'antd/dist/antd.css'
 import '../main_style.css'
 import uuid from 'uuid/v4'
+import img from "../img/add-square-button.png"
 
 
 const CREATE_ELEM = 'CREATE_ELEM'
@@ -35,7 +36,7 @@ class CreateElem extends React.Component {
 
     render() {
         return <div className="flex center v-center ">
-            <form>
+            <form className="flex v-center">
                 <label>Artist
                     <input className="round-inputs" ref={this.artistRef} type="text" required placeholder="insert artist"/>
                 </label>
@@ -53,7 +54,7 @@ class CreateElem extends React.Component {
                         <option value="Noise">Noise</option>
                     </select>
                 </label>
-                <Button type="primary" onClick={this.handleCreate} >create me</Button>
+                <Button type="primary" onClick={this.handleCreate} ><img src={img} alt="add icon" className="v-center icon"/></Button>
             </form>
         </div>
     }

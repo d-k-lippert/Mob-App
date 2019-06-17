@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import React from "react";
 import {Button} from "antd";
 import '../main_style.css'
-
+import img from '../img/delete.png';
 
 const DELETE_ELEM = 'DELETE_ELEM'
 
@@ -15,12 +15,12 @@ class Elem extends React.Component {
     render() {
 
         return <div className="flex space-even v-center flex-direct">
-            <div>
+
                 <p>Artist: {this.props.artist}</p>
                 <p>Datum: {this.props.date}</p>
                 <p>Genre: {this.props.genre}</p>
-            </div>
-            <Button type="danger" onClick={this.deleteHandler}>delete me</Button>
+
+            <Button type="danger" onClick={this.deleteHandler}><img src={img} alt="delete icon" className="v-center icon"/></Button>
         </div>
 
     }

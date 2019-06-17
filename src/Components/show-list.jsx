@@ -3,6 +3,7 @@ import React from "react";
 import '../main_style.css'
 import Elem from './delete-element'
 import FlipMove from "react-flip-move"
+import {Checkbox} from "antd"
 
 
 
@@ -19,9 +20,10 @@ class List extends React.Component {
         const listUI = list.map(elem => <Elem key={elem.id} id={elem.id} artist={elem.artist} date={elem.date} genre={elem.genre}/>)
 
         return(
-        <div className="flex space-even">
-            <FlipMove duration={400} ease="ease-out">
-                {listUI}
+        <div className="flex space-even v-center">
+            <FlipMove duration={400} ease="ease-out" className="flex center v-center">
+                <Checkbox type="checkbox" value={{listUI}}>
+                </Checkbox>{listUI}
             </FlipMove>
         </div>
         )
