@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import React from "react";
 import {Button, Checkbox, Icon, Typography} from "antd";
 import '../main_style.css'
-
+import uuid from 'uuid/v4'
 
 const DELETE_ELEM = 'DELETE_ELEM'
 const EDIT_ELEM = 'EDIT_ELEM'
@@ -15,11 +15,11 @@ class Elem extends React.Component {
     constructor(props) {
         super(props)
 
+
         this.artistRef = React.createRef()
         this.dateRef = React.createRef()
         this.genreRef = React.createRef()
         this.locationRef = React.createRef()
-        this.textInput = React.createRef()
 
 
         this.state = {
@@ -73,10 +73,14 @@ class Elem extends React.Component {
     }
 
     updateComponentValue = () => {
+
         this.setState({
             isInEditMode: false,
-            value: this.textInput.current.value
+            value: this.refs.artistInput.value,
+
         })
+
+            /*this.props.dispatch({type: EDIT_ELEM, payload: {value,  id: uuid()}})*/
     }
 
 
@@ -88,7 +92,7 @@ class Elem extends React.Component {
             <div className="flex space-even v-center flex-direct">
 
                 <p> Artist:
-                <input type="text" defaultValue={this.props.artist} ref={this.textInput} />
+                <input type="text" defaultValue={this.state.value} ref="artistInput" />
                 </p>
                 <p>Datum: {this.props.date}</p>
                 <p>Genre: {this.props.genre}</p>
@@ -104,7 +108,7 @@ class Elem extends React.Component {
         <div className="flex space-even v-center flex-direct">
                 <Checkbox value={this.props.id}></Checkbox>
 
-                <p>Artist: {this.props.artist}</p>
+                <p>Artist: {this.state.value}</p>
                 <p>Datum: {this.props.date}</p>
                 <p>Genre: {this.props.genre}</p>
                 <p>Location: {this.props.location}</p>
