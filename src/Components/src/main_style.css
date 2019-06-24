@@ -1,0 +1,38 @@
+.flex{
+    display:flex;
+
+}
+
+.center{
+    justify-content: center;
+}
+
+.v-center{
+    align-items: center;
+}
+
+.flex-direct-row{
+    flex-direction: row;
+}
+
+.flex-direct-column-wrap{
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.space-even{
+    justify-content: space-evenly;
+}
+
+.space-even p, Button{
+    margin: 0 15px;
+}
+.round-inputs{
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.icon{
+    height:50%;
+    margin: 5px;
+}
