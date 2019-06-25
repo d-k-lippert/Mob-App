@@ -38,8 +38,8 @@ class CreateElem extends React.Component {
 
 
     render() {
-        return <div className="flex center v-center ">
-            <form className="flex v-center">
+        return <div className="flex left v-center">
+            <form className="flex flex-direct-column-wrap">
                 <label>Artist
                     <input className="round-inputs" ref={this.artistRef} type="text" required placeholder="insert artist"/>
                 </label>

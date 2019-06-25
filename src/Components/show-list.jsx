@@ -23,7 +23,7 @@ class Concerts extends React.Component {
 
         return(
         <div className="flex space-even v-center">
-            <FlipMove duration={400} ease="ease-out" className="flex center v-center flex-direct-column-wrap">
+            <FlipMove duration={400} ease="ease-out" className="flex center v-center flex-direct-column-wrap overflow">
 
                     {concertsUI}
 

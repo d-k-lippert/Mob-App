@@ -86,13 +86,13 @@ store.subscribe(() => {
 
 
 ReactDom.render(
-    <Layout>
+    <Layout className="viewport center">
 
         <Provider store={store}>
-
+            <div className="flex space-even">
                     <CreateElem/>
                     <Concerts/>
-
+            </div>
         </Provider>
 
     </Layout>,

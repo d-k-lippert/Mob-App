@@ -1,12 +1,15 @@
 .flex{
     display:flex;
-
 }
-
+.left{
+    justify-content:flex-start;
+}
 .center{
     justify-content: center;
 }
-
+.viewport{
+    height: 100vh;
+}
 .v-center{
     align-items: center;
 }
@@ -17,7 +20,7 @@
 
 .flex-direct-column-wrap{
     flex-direction: column;
-    flex-wrap: wrap;
+
 }
 
 .space-even{
@@ -35,4 +38,22 @@
 .icon{
     height:50%;
     margin: 5px;
+}
+
+.panel{
+        display:none;
+
+    }
+.is-expanded{
+        display:block;
+        text-align:center;
+    }
+.panel-header{
+    cursor: pointer;
+}
+
+
+
+.spacer{
+    padding: 20px;
 }
