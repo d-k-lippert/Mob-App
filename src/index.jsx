@@ -12,9 +12,8 @@ import './main_style.css'
 
 
 import CreateElem from "./Components/create-element";
-import List from "./Components/show-list";
-
-
+import Concerts from "./Components/show-list";
+import {loadState, saveState} from "./Components/localStorage"
 
 
 
@@ -22,10 +21,10 @@ const LOAD_ITEM = 'LOAD_ITEM'
 const DELETE_ELEM = 'DELETE_ELEM'
 const CREATE_ELEM = 'CREATE_ELEM'
 //const EDIT_ELEM = 'EDIT_ELEM'
-
+const TOGGLE_CONCERTS = 'TOGGLE_CONCERTS'
 
 const initialState = {
-    list: [
+    concerts: [
         {
             id: uuid(),
             artist: '',
@@ -42,7 +41,7 @@ function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_ELEM: {
             const newList =
-                [...state.list,
+                [...state.concerts,
                     {
                         id: action.payload.id,
                         artist: action.payload.artist,
@@ -51,32 +50,39 @@ function reducer(state = initialState, action) {
                         location: action.payload.location
                     }
                 ]
-            return {...state, list: newList}
+            return {...state, concerts: newList}
         }
         case DELETE_ELEM: {
             const id = action.payload
             const newList = []
             // ...
-            for (let elem of state.list) {
+            for (let elem of state.concerts) {
                 if (elem.id !== id) {
                     newList.push(elem)
                 }
             }
-            return {...state, list: newList}
+            return {...state, concerts: newList}
         }
+
         default:
             return state
     }
 }
 
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 
 
-const value = localStorage.getItem('rezept12')
-store.dispatch({type:LOAD_ITEM},value)
+const persistedState = loadState()
 
+const store = createStore(
+    reducer,
+    persistedState
+)
+
+store.subscribe(() => {
+    saveState(store.getState())
+});
 
 
 ReactDom.render(
@@ -85,7 +91,7 @@ ReactDom.render(
         <Provider store={store}>
 
                     <CreateElem/>
-                    <List/>
+                    <Concerts/>
 
         </Provider>
 
