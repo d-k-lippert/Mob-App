@@ -23,7 +23,8 @@ class Elem extends React.Component {
             artist: this.props.artist,
             date: this.props.date,
             genre: this.props.genre,
-            isInEditMode: false
+            isInEditMode: false,
+            isExpanded: false
         }
     }
 
@@ -62,7 +63,11 @@ class Elem extends React.Component {
 
         */
 
-
+    expandHandler=()=>{
+        this.setState({
+            isExpanded:!this.state.isExpanded
+        })
+    }
 
 
     changeEditMode = () => {
@@ -87,11 +92,11 @@ class Elem extends React.Component {
 
 
     render() {
-
+        const {isExpanded} =this.state
         //Render Edited
         return this.state.isInEditMode ?
 
-            <div className="flex space-even v-center flex-direct">
+            <div className="flex space-even v-center flex-direct flex_1">
 
                 <p> Artist:
                 <input type="text" defaultValue={this.state.artist} ref="artistInput"  /*ref={this.artistRef}*/ />
@@ -119,23 +124,26 @@ class Elem extends React.Component {
             :
 
             //Render Default
-        <div className="flex space-even v-center flex-direct">
-                <Checkbox value={this.props.id}></Checkbox>
+        <div className="flex space-even v-center flex-direct-column-wrap spacer">
+
+            <h2 className="panel-header" onClick={this.expandHandler}> {this.state.artist} live in concert</h2>
+
+            <div className={`panel ${isExpanded ? 'is-expanded': ''}`}>
+                <div className="flex-direct-column-wrap">
+
+                        <p>Datum: {this.state.date}</p>
 
 
-
-                <p>Artist: {this.state.artist}</p>
-
-                <p>Datum: {this.state.date}</p>
+                        <p>Genre: {this.state.genre}</p>
 
 
-                <p>Genre: {this.state.genre}</p>
+                        <p>Location: {this.props.location}</p>
+                    <br/>
 
-
-                <p>Location: {this.props.location}</p>
-
-            <Button type="danger" onClick={this.deleteHandler}><Icon type="delete" /></Button>
-            <Button onClick={this.changeEditMode}><Icon type="edit" /></Button>
+                    <Button type="danger" onClick={this.deleteHandler}><Icon type="delete" /></Button>
+                    <Button onClick={this.changeEditMode}><Icon type="edit" /></Button>
+                </div>
+            </div>
         </div>
 
     }
