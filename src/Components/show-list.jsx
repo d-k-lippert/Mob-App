@@ -14,7 +14,6 @@ function connectListToListComponent(state) {
 @connect(connectListToListComponent)
 class Concerts extends React.Component {
 
-
     render() {
         const concerts = this.props.concerts
 
@@ -22,7 +21,7 @@ class Concerts extends React.Component {
         const concertsUI = concerts.map(elem => <Elem key={elem.id} id={elem.id} artist={elem.artist} date={elem.date} genre={elem.genre} location={elem.location}/>)
 
         return(
-        <div className="flex space-even v-center">
+        <div className="flex space-even v-center secondary-box">
             <FlipMove duration={400} ease="ease-out" className="flex center v-center flex-direct-column-wrap overflow">
 
                     {concertsUI}

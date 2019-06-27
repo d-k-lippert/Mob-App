@@ -1,3 +1,21 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('fonts/Pacifico-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'MetalMainia';
+    src: url('fonts/MetalMania-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Nunito';
+    src: url('fonts/Nunito-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Orbitron';
+    src: url('fonts/Orbitron-Medium.ttf') format('truetype');
+}
+
+
 .flex{
     display:flex;
 }
@@ -7,8 +25,15 @@
 .center{
     justify-content: center;
 }
+.flex-start{
+    flex-direction: column;
+    justify-content: flex-start;
+}
 .viewport{
     height: 100vh;
+    background-color: black;
+    background-image: url("img/full_gif.gif");
+    background-repeat: round;
 }
 .v-center{
     align-items: center;
@@ -20,7 +45,6 @@
 
 .flex-direct-column-wrap{
     flex-direction: column;
-
 }
 
 .space-even{
@@ -30,10 +54,7 @@
 .space-even p, Button{
     margin: 0 15px;
 }
-.round-inputs{
-    border-radius: 5px;
-    margin: 0 10px;
-}
+
 
 .icon{
     height:50%;
@@ -52,8 +73,85 @@
     cursor: pointer;
 }
 
+.text-align{
+    text-align: center;
+}
 
+.auto-margin{
+    margin: auto;
+}
 
 .spacer{
     padding: 20px;
+}
+
+.spacer-inputs, option{
+    padding: 5px 20px;
+    margin: 5px;
+    width: 200px;
+}
+
+h1{
+    font-family: Orbitron;
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 5rem;
+}
+h2{
+    font-family: MetalMainia;
+    font-size: 3rem;
+    color: white;
+}
+h4{
+    font-family: Orbitron;
+    color: white;
+}
+
+input, select{
+    font-family: Orbitron;
+    font-size: 1rem;
+    font-weight: 500;
+}
+h3{
+    font-family: Orbitron;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.primary-box{
+    background-color: #006899;
+    opacity: 0.9;
+    padding: 20px;
+    height: 100vh;
+    flex: 1;
+    border-right: 3px;
+    border-right-style: solid;
+    border-right-color: cadetblue;
+
+ }
+.secondary-box{
+    background-color: black;
+    opacity: 0.8;
+    padding: 20px;
+    height: 100vh;
+    flex: 2;
+}
+
+.vertical-align{
+    vertical-align: center;
+}
+
+.button-style{
+    margin-top: 2rem;
+    width: 25%;
+}
+.round-inputs{
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.red_col
+{
+    color: #f12a35;
 }

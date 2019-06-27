@@ -3,9 +3,11 @@ import React from "react";
 import {Button, Checkbox, Icon, Typography} from "antd";
 import '../main_style.css'
 import uuid from 'uuid/v4'
-
+import FlipMove from "react-flip-move";
 const DELETE_ELEM = 'DELETE_ELEM'
 const EDIT_ELEM = 'EDIT_ELEM'
+const CREATE_ELEM = 'CREATE_ELEM'
+
 const { Paragraph } = Typography;
 
 
@@ -15,17 +17,16 @@ class Elem extends React.Component {
     constructor(props) {
         super(props)
 
+        this.artistRef = React.createRef()
+        this.dateRef = React.createRef()
+        this.genreRef = React.createRef()
+        this.locationRef = React.createRef()
 
-       /* this.artistRef = React.createRef()*/
+        this.state = ({
 
-
-        this.state = {
-            artist: this.props.artist,
-            date: this.props.date,
-            genre: this.props.genre,
             isInEditMode: false,
             isExpanded: false
-        }
+        })
     }
 
 
@@ -36,32 +37,6 @@ class Elem extends React.Component {
 
     }
 
-    /*handleTextChange(event) {
-    this.props.setDataValue(event.target.value);
-}*/
-    /*
-
-    onChange = () => {
-        const artist = this.artistRef.current.value
-        const date = this.dateRef.current.value
-        const genre = this.genreRef.current.value
-        const location = this.locationRef.current.value
-
-        this.props.dispatch({type: EDIT_ELEM, payload: {artist, date, genre, location, id}})
-    };
-*/
-
-    /*
-        render() {
-            return (
-                <div>
-                    <Paragraph editable={{ onChange: this.onChange }}>{this.state.str}</Paragraph>
-                </div>
-            );
-        }
-    }
-
-        */
 
     expandHandler=()=>{
         this.setState({
@@ -77,18 +52,26 @@ class Elem extends React.Component {
     }
 
     updateComponentValue = () => {
-        /*const artist = this.artistRef.current.value*/
+
         this.setState({
             isInEditMode: false,
-            artist: this.refs.artistInput.value,
-            date: this.refs.dateInput.value,
-            genre: this.refs.genreInput.value,
-
-
         })
 
-            /*this.props.dispatch({type: EDIT_ELEM, payload: {artist,  id: uuid()}})*/
+        this.props.dispatch({type: DELETE_ELEM, payload: this.props.id})
+
+        const artist = this.artistRef.current.value
+        const date = this.dateRef.current.value
+        const genre = this.genreRef.current.value
+        const location = this.locationRef.current.value
+
+        this.props.dispatch({type: CREATE_ELEM, payload: {artist, date, genre,location,  id: uuid()}})
     }
+
+
+
+
+
+
 
 
     render() {
@@ -96,29 +79,29 @@ class Elem extends React.Component {
         //Render Edited
         return this.state.isInEditMode ?
 
-            <div className="flex space-even v-center flex-direct flex_1">
+            <div>
+                <div className="flex center">
+                <h2 className={`panel-header ${this.state.isInEditMode ? 'red_col' : ''}`} onClick={this.expandHandler}> {this.props.artist} - {this.props.date}</h2>
+                </div>
+                <div className="flex space-even v-center flex-direct flex_1">
 
-                <p> Artist:
-                <input type="text" defaultValue={this.state.artist} ref="artistInput"  /*ref={this.artistRef}*/ />
-                </p>
-                <input type="date" defaultValue={this.state.date} ref="dateInput"  /*ref={this.dateRef}*/ />
+                    <input type="text" className="round-inputs spacer-inputs" defaultValue={this.props.artist} ref={this.artistRef} />
 
+                    <input type="date" className="round-inputs spacer-inputs" defaultValue={this.props.date} ref={this.dateRef} />
 
-
-                <label>Genre
-                    <select className="round-inputs" defaultValue={this.state.genre} ref="genreInput">
+                    <select className="round-inputs spacer-inputs" defaultValue={this.props.genre} ref={this.genreRef}>
                         <option value="Rock">Rock</option>
                         <option value="Rap">Rap</option>
                         <option value="Techno">Techno</option>
                         <option value="Metal">Metal</option>
                         <option value="Noise">Noise</option>
                     </select>
-                </label>
-                
-                <p>Location: {this.props.location}</p>
+
+                    <input type="text" className="round-inputs spacer-inputs" defaultValue={this.props.location} ref={this.locationRef}/>
                 <Button type="danger" onClick={this.changeEditMode}>Cancel</Button>
                 <Button type="primary" onClick={this.updateComponentValue.bind(this)}>Save Edit</Button>
 
+            </div>
             </div>
 
             :
@@ -126,24 +109,20 @@ class Elem extends React.Component {
             //Render Default
         <div className="flex space-even v-center flex-direct-column-wrap spacer">
 
-            <h2 className="panel-header" onClick={this.expandHandler}> {this.state.artist} live in concert</h2>
+            <h2 className="panel-header" onClick={this.expandHandler}> {this.props.artist} - {this.props.date}</h2>
+                <div className={`panel ${isExpanded ? 'is-expanded': ''}`}>
+                    <div className="flex-direct-column-wrap">
 
-            <div className={`panel ${isExpanded ? 'is-expanded': ''}`}>
-                <div className="flex-direct-column-wrap">
-
-                        <p>Datum: {this.state.date}</p>
-
-
-                        <p>Genre: {this.state.genre}</p>
+                            <h4>Genre: {this.props.genre}</h4>
 
 
-                        <p>Location: {this.props.location}</p>
-                    <br/>
+                            <h4>Location: {this.props.location}</h4>
+                        <br/>
 
-                    <Button type="danger" onClick={this.deleteHandler}><Icon type="delete" /></Button>
-                    <Button onClick={this.changeEditMode}><Icon type="edit" /></Button>
+                        <Button type="danger" onClick={this.deleteHandler}><Icon type="delete" /></Button>
+                        <Button onClick={this.changeEditMode}><Icon type="edit" /></Button>
+                    </div>
                 </div>
-            </div>
         </div>
 
     }
