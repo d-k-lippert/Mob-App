@@ -20,7 +20,7 @@ import {loadState, saveState} from "./Components/localStorage"
 const LOAD_ITEM = 'LOAD_ITEM'
 const DELETE_ELEM = 'DELETE_ELEM'
 const CREATE_ELEM = 'CREATE_ELEM'
-//const EDIT_ELEM = 'EDIT_ELEM'
+const EDIT_ELEM = 'EDIT_ELEM'
 const TOGGLE_CONCERTS = 'TOGGLE_CONCERTS'
 
 const initialState = {
@@ -36,7 +36,7 @@ const initialState = {
 }
 
 
-
+/*"pure" Funktion- es wird immer das ausgegeben, was übergeben wird*/
 function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_ELEM: {
@@ -63,7 +63,6 @@ function reducer(state = initialState, action) {
             }
             return {...state, concerts: newList}
         }
-
         default:
             return state
     }
@@ -71,15 +70,18 @@ function reducer(state = initialState, action) {
 
 
 
-
-
+/*loadState-Funkttion wird in der Konstante persistedState gespeichert*/
 const persistedState = loadState()
 
+/*die verschiedenen Zustände aus der Reducer-Funktion bekommen, in einen neuen Speicher packen und die alten Zustände überschreiben*/
 const store = createStore(
     reducer,
     persistedState
 )
 
+
+/*Subscribe Methode um jeglichhe Zustandsänderung zu überwachen*/
+/*Außerdem wird der aktuelle Zustand in die saveState-Funktion (localStorage.jsx) übermittelt*/
 store.subscribe(() => {
     saveState(store.getState())
 });
