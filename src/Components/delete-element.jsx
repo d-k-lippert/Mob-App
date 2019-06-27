@@ -1,11 +1,12 @@
 import {connect} from "react-redux";
 import React from "react";
-import {Button, Checkbox, Icon, Typography} from "antd";
+import {Button, Icon, Typography} from "antd";
 import '../main_style.css'
 import uuid from 'uuid/v4'
-import FlipMove from "react-flip-move";
+
+
 const DELETE_ELEM = 'DELETE_ELEM'
-const EDIT_ELEM = 'EDIT_ELEM'
+
 const CREATE_ELEM = 'CREATE_ELEM'
 
 const { Paragraph } = Typography;
@@ -23,6 +24,7 @@ class Elem extends React.Component {
         this.locationRef = React.createRef()
 
         this.state = ({
+
 
             isInEditMode: false,
             isExpanded: false
@@ -76,6 +78,7 @@ class Elem extends React.Component {
 
     render() {
         const {isExpanded} =this.state
+
         //Render Edited
         return this.state.isInEditMode ?
 

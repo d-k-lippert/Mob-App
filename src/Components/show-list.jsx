@@ -3,7 +3,7 @@ import React from "react";
 import '../main_style.css'
 import Elem from './delete-element'
 import FlipMove from "react-flip-move"
-
+import {saveState} from "./localStorage"
 
 
 
@@ -13,6 +13,14 @@ function connectListToListComponent(state) {
 
 @connect(connectListToListComponent)
 class Concerts extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            isNotFirstLoad: false,
+        }
+    }
+
 
     render() {
         const concerts = this.props.concerts
@@ -20,7 +28,9 @@ class Concerts extends React.Component {
         //bekommt attribute von create elem aus der handle-create function siehe create-element.jsx
         const concertsUI = concerts.map(elem => <Elem key={elem.id} id={elem.id} artist={elem.artist} date={elem.date} genre={elem.genre} location={elem.location}/>)
 
+
         return(
+
         <div className="flex space-even v-center secondary-box">
             <FlipMove duration={400} ease="ease-out" className="flex center v-center flex-direct-column-wrap overflow">
 
@@ -28,6 +38,7 @@ class Concerts extends React.Component {
 
             </FlipMove>
         </div>
+
         )
     }
 }
