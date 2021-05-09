@@ -11,7 +11,7 @@
   "author": "Michael Jonathan Lee",
   "dependencies": {
     "antd": "^3.19.8",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-flip-move": "^3.0.3",
